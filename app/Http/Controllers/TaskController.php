@@ -51,19 +51,91 @@ class TaskController extends Controller
      * @param  Request  $request
      * @return Response
      */
+    public function create(Request $request)
+    {
+        #dd("new task");
+	return view('tasks.add', [
+            'task' => new Task(),
+        ]);
+    }
+
+    /**
+     * Store a new task.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
+            'description' => 'max:1024',
         ]);
 
         $request->user()->tasks()->create([
             'name' => $request->name,
+            'description' => $request->description,
         ]);
+
+	#Session::flash('flash_message', 'Task successfully added!');
 
         return redirect('/tasks');
     }
 
+    /**
+     * Update a task.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function update(Request $request, Task $task)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'description' => 'max:1024',
+        ]);
+        $task = Task::findOrFail($task->id);
+        $input = $request->all();
+	$task->fill($input);
+        $task->save();
+
+	#Session::flash('flash_message', 'Task successfully updated!');
+
+        return redirect('/tasks');
+    }
+
+    /**
+     * Show the given task.
+     *
+     * @param  Request  $request
+     * @param  Task  $task
+     * @return Response
+     */
+    public function show(Request $request, Task $task)
+    {
+	#dd($request->all());
+
+        return view('tasks.show', [
+            'task' => $task,
+        ]);
+    }
+    
+    /**
+     * Edit the given task.
+     *
+     * @param  Request  $request
+     * @param  Task  $task
+     * @return Response
+     */
+    public function edit(Request $request, Task $task)
+    {
+	#dd($request->all());
+
+        return view('tasks.edit', [
+            'task' => $task,
+        ]);
+    }
+    
     /**
      * Destroy the given task.
      *

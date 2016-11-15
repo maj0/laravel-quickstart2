@@ -29,7 +29,11 @@ Route::group(['middleware' => ['web']], function () {
     })->middleware('guest');
 
     Route::get('/tasks', 'TaskController@index');
+    Route::get('/task', 'TaskController@create');
     Route::post('/task', 'TaskController@store');
+    Route::post('/task/show/{task}', 'TaskController@show');
+    Route::post('/task/edit/{task}', 'TaskController@edit');
+    Route::post('/task/update/{task}', 'TaskController@update');
     Route::delete('/task/{task}', 'TaskController@destroy');
 
     Route::auth();

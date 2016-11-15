@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet"><!-- Pagination -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -40,7 +41,8 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Task List
+                    <span><img src="https://laravel.com/favicon.png" width=15px height=15px>
+                    Task List</span>
                 </a>
             </div>
 
@@ -76,6 +78,20 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script><!-- Pagination -->
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <div class="container">
+        <hr>
+        <footer>
+            <p>&copy; 2005 - <?php echo date('Y') ?> by SM Technologies Ltd. <?php echo 'All rights reserved.'; ?></p>
+        </footer>
+    </div> <!-- /container -->
 </body>
+<script class='init'>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+} );
+</script>
 </html>
