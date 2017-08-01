@@ -1,5 +1,6 @@
 vendor
 logs
+storage
 .*
 *.*lock
 *cache*
