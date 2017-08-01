@@ -5,14 +5,14 @@
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Edit Task
+                    New Task
                 </div>
 
                 <div class="panel-body">
                     <!-- Display Validation Errors -->
                     @include('common.errors')
 
-                    <!-- Edit Task Form -->
+                    <!-- New Task Form -->
                     <form action="{{ url('task/' . $task->id) }}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
 

@@ -44,10 +44,13 @@
                                             </form>
                                             </td><td>
                                             <!-- Task Delete Button -->
-                                            <form action="{{url('task/' . $task->id)}}" method="POST">
+                                            <form action="{{url('task/' . $task->id)}}" method="POST"
+											>
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                                <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger"
+											            onclick="return confirm('Are you sure to delete task with id {{ $task->id }}')"
+												>
                                                     <i class="fa fa-btn fa-trash"></i>Delete
                                                 </button>
                                             </form>

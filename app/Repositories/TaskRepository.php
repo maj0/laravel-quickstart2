@@ -13,10 +13,11 @@ class TaskRepository
      * @param  User  $user
      * @return Collection
      */
-    public function forUser(User $user)
+    public function forUser(User $user, $limit = 100, $dir = 'asc', $orderBy = 'created_at')
     {
         return Task::where('user_id', $user->id)
-                    ->orderBy('created_at', 'asc')
+                    ->orderBy($orderBy, $dir)
+                    ->limit($limit)
                     ->get();
     }
 }

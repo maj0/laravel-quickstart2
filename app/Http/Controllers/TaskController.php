@@ -46,6 +46,19 @@ class TaskController extends Controller
     }
 
     /**
+     * Display a list of all of the user's task.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function dashboard(Request $request)
+    {
+        return view('dashboard', [
+            'tasks' => $this->tasks->forUser($request->user(), 4, 'dsc'),
+        ]);
+    }
+
+    /**
      * Create a new task.
      *
      * @param  Request  $request
@@ -54,7 +67,7 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         #dd("new task");
-	return view('tasks.add', [
+        return view('tasks.add', [
             'task' => new Task(),
         ]);
     }
@@ -77,7 +90,7 @@ class TaskController extends Controller
             'description' => $request->description,
         ]);
 
-	#Session::flash('flash_message', 'Task successfully added!');
+    #Session::flash('flash_message', 'Task successfully added!');
 
         return redirect('/tasks');
     }
@@ -96,10 +109,10 @@ class TaskController extends Controller
         ]);
         $task = Task::findOrFail($task->id);
         $input = $request->all();
-	$task->fill($input);
+        $task->fill($input);
         $task->save();
 
-	#Session::flash('flash_message', 'Task successfully updated!');
+        #Session::flash('flash_message', 'Task successfully updated!');
 
         return redirect('/tasks');
     }
@@ -113,7 +126,7 @@ class TaskController extends Controller
      */
     public function show(Request $request, Task $task)
     {
-	#dd($request->all());
+    #dd($request->all());
 
         return view('tasks.show', [
             'task' => $task,
@@ -129,7 +142,7 @@ class TaskController extends Controller
      */
     public function edit(Request $request, Task $task)
     {
-	#dd($request->all());
+    #dd($request->all());
 
         return view('tasks.edit', [
             'task' => $task,

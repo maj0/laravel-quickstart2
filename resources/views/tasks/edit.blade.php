@@ -37,9 +37,22 @@
                         <!-- Edit Task Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
+                                <!--button type="submit" class="btn btn-default">
+                                    <i class="fa fa-btn fa-save"></i>Save Task
+                                </button-->
+                                <table><tr><td>
+                                <!-- Show all tasks  button -->
+                                <form action="{{url('tasks/')}}" method="GET">
+                                    <button type="submit" id="show-task-{{ $task->id }}" class="btn btn-info">
+                                        <i class="fa fa-btn fa-show"></i>Show all tasks
+                                    </button>
+                                </form>
+                                </td><td>
+                                <!-- Task Edit Button -->
                                 <button type="submit" class="btn btn-default">
                                     <i class="fa fa-btn fa-save"></i>Save Task
                                 </button>
+                                </td></tr></table>
                             </div>
                         </div>
                     </form>
